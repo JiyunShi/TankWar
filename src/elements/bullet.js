@@ -1,14 +1,14 @@
 import CV from './ConstVariable';
 import Images from './image';
-
+import {checkIntersect} from './GameFunction';
 
 class Bullet {
 
-	constructor(startX, startY, dir,type) {
+	constructor(startX, startY, dir,type, speed) {
 		
 		this.x=startX;
 		this.y=startY;
-		this.speed =3;
+		this.speed =speed;
 		this.size = 6;
 		this.dir = dir;
 		this.hit = false; //if hit wall
@@ -20,7 +20,6 @@ class Bullet {
 	move(){
 
 		if(this.dir == CV.UP){
-			
 			this.y -= this.speed;
 		}else if(this.dir == CV.DOWN){
 			this.y += this.speed;
@@ -42,6 +41,13 @@ class Bullet {
 		if(this.y>CV.SCREEN_OFFSET_Y+CV.GAME_AREA_HEIGHT-this.size) return true;
 		return false;
 	}		
+
+	isShot =(bullet)=>{
+		if (this.type == bullet.type) return false;
+		return (this.isAlive&&checkIntersect(bullet,this,0));
+
+	};
+
 
 
 	destory(){

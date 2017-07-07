@@ -7,7 +7,7 @@ const ConstVariable = {
 	GAME_AREA_WIDTH: 416,
 	GAME_AREA_HEIGHT: 416,
 
-	AI: 1500,
+	AI: 1000,
 
 	UP:0,
 	DOWN: 1,

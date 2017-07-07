@@ -1,8 +1,6 @@
 import config from './config';
 import {logStars} from './config';
-import apiRouter from './api';
-//import fs from 'fs';
-//var fs = require('fs');
+//import apiRouter from './api';
 import express from 'express';
 // change sass to css
 import sassMiddleware from 'node-sass-middleware';
@@ -43,7 +41,7 @@ server.get('/',(req,res)=>{
 	});
 });
 
-server.use('/api', apiRouter);
+//server.use('/api', apiRouter);
 
 //does same job as below commented code.
 server.use(express.static('static'));

@@ -1,5 +1,6 @@
 import CV from './ConstVariable';
-import Bullet from './bullet.js';
+import Bullet from './bullet';
+import {checkIntersect} from './GameFunction';
 
 class Tank {
 
@@ -10,7 +11,6 @@ class Tank {
 		this.speed =2;
 		this.size = 32;
 		this.dir = CV.UP;
-		this.hit = false; //if hit wall or other tank
 		this.isMoving = false;
 		this.maxBullet = 3; //max bullets allowed
 		this.bullets = []; //bullet array
@@ -32,7 +32,7 @@ class Tank {
 				case CV.DOWN: tmpy += this.speed; break;
 				case CV.LEFT: tmpx -= this.speed; break;			
 			}
-			if(this.isHit()){
+			if(this.notHit()){
 				this.x = tmpx;
 				this.y = tmpy;
 			}
@@ -41,7 +41,7 @@ class Tank {
 	};
 
 
-	isHit = ()=>{
+	notHit = ()=>{
 		switch(this.dir){
 			case 0: if (this.y<=CV.SCREEN_OFFSET_Y)
 						{this.y=CV.SCREEN_OFFSET_Y; return false;} return true;
@@ -52,12 +52,13 @@ class Tank {
 			case 3: if (this.x >=CV.SCREEN_OFFSET_X+CV.GAME_AREA_WIDTH-this.size)
 						{this.x=CV.SCREEN_OFFSET_X+CV.GAME_AREA_WIDTH-this.size;return false} return true;
 			default: return true;
-
 		}
 	};
 
-	isShot = ()=>{
+	isShot = (bullet)=>{
+		//if(this.isPlayer==bullet.type) return false;
 
+		return (this.isAlive&&checkIntersect(bullet,this,6));
 	};
 
 	shoot = ()=>{
@@ -79,7 +80,7 @@ class Tank {
 				bulletY = this.y +this.size/2.5;
 			}
 
-			let mybullet = new Bullet(bulletX, bulletY, this.dir, this.isPlayer);
+			let mybullet = new Bullet(bulletX, bulletY, this.dir, this.isPlayer,this.speed+1);
 
 			this.bullets.push(mybullet);
 

@@ -14,7 +14,7 @@ module.exports = {
 				loader: 'babel-loader'
 			},
 			{
-				//npm i -S json-loader, so webpack and read Json file
+				//npm i -S json-loader, so webpack can read Json file
 				test: /\.json$/,
 				loader:'json-loader'
 
