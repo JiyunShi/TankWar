@@ -2,7 +2,7 @@ import Tank from './tank';
 import Images from './image';
 import Boom from './boom';
 import CV from './ConstVariable';
-
+import {enemyCrack} from './audio';
 
 class EnemyTank extends Tank{
 
@@ -19,7 +19,7 @@ class EnemyTank extends Tank{
 		this.isMoving =true;
 		this.speed = 1+level;
 		this.maxBullet= 2+level;
-		
+
 
 	}
 
@@ -41,6 +41,7 @@ class EnemyTank extends Tank{
 			this.isAlive=false;
 			this.isMoving=false;
 			obj.booms.push(new Boom(0, this));
+			enemyCrack.play();
 
 		}
 	};

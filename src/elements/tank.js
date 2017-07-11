@@ -1,6 +1,7 @@
 import CV from './ConstVariable';
 import Bullet from './bullet';
 import {checkIntersect} from './GameFunction';
+import {shootAudio} from './audio';
 
 class Tank {
 
@@ -15,7 +16,9 @@ class Tank {
 		this.maxBullet = 3; //max bullets allowed
 		this.bullets = []; //bullet array
 		this.isAlive = true;
-		this.isPlayer = true;
+		this.isPlayer=false;
+		
+		
 		
 		
 	}
@@ -57,7 +60,7 @@ class Tank {
 
 	isShot = (bullet)=>{
 		//if(this.isPlayer==bullet.type) return false;
-
+		if(this.isProtected) return false;
 		return (this.isAlive&&checkIntersect(bullet,this,6));
 	};
 
@@ -83,6 +86,7 @@ class Tank {
 			let mybullet = new Bullet(bulletX, bulletY, this.dir, this.isPlayer,this.speed+1);
 
 			this.bullets.push(mybullet);
+			if(this.isPlayer&&this.lives>=0) shootAudio.play();
 
 		}
 	};

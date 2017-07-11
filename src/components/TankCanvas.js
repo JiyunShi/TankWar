@@ -16,8 +16,7 @@ class TankCanvas extends React.Component{
 		this.ctx = ReactDOM.findDOMNode(this).getContext('2d');
 		this.props.startMenu(this.ctx);
 		//this.props.drawAll(this.ctx);
-		window.addEventListener("keydown", this.props.handleTankMove);
-		window.addEventListener("keyup", this.props.handleTankStop);
+		
 	}
 	
 	componentDidUpdate() {
@@ -26,7 +25,7 @@ class TankCanvas extends React.Component{
 
 	componentWillReceiveProps(nextProps) {
 		//nextProps.drawAll(this.ctx);
-		
+
 
 	}
 
@@ -48,10 +47,8 @@ class TankCanvas extends React.Component{
 	
 TankCanvas.propTypes = {
 	
-	handleTankMove: React.PropTypes.func.isRequired,
-	handleTankStop: React.PropTypes.func.isRequired,
 	startMenu:React.PropTypes.func.isRequired,
-	gameInit:React.PropTypes.func.isRequired
+	
 	
 	
 	

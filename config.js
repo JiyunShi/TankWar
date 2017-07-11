@@ -9,7 +9,7 @@ export const logStars = function(message){
 };
 
 export default {
-	mongodbUri: 'mongodb://localhost:27017/test',
+	mongodbUri: 'mongodb://localhost:27017/tankRank',
 	//set default port 8080
 	port: env.PORT ||8080,
 	//set default host address bind to all IPs on the machine
