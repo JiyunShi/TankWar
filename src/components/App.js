@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from './header';
 import TankCanvas from './TankCanvas';
 import EnemyTank from '../elements/enemyTank';
 import PlayerTank from '../elements/playerTank';
@@ -276,7 +276,7 @@ class App extends React.Component{
 
 
 			newName = inputName;
-			api.updateRanking(newName, this.gameScore).then(results=>{
+			api.updateRanking(newName, this.gameScore.toFixed(2)).then(results=>{
 
 				let user_id = results._id;
 				let rankings = results.rankings;
@@ -313,8 +313,9 @@ class App extends React.Component{
 				this.scoreDisplay(displayRankings,user_index);
 
 
-				setTimeout(()=>{ clearTimeout(this.scoreTimer); },10000);
-				this.gameInit();
+				setTimeout(()=>{ clearTimeout(this.scoreTimer); 
+									this.gameInit();},10000);
+				
 			});
 
 		}
