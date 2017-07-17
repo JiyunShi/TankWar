@@ -13,7 +13,7 @@ export default {
 	//set default port 8080
 	port: env.PORT ||8080,
 	//set default host address bind to all IPs on the machine
-	host: env.HOST ||'0.0.0.0',
+	host: env.HOST ||'127.0.0.1',
 	get serverUrl(){
 		return `http://${this.host}:${this.port}`;
 	}
