@@ -270,13 +270,17 @@ class App extends React.Component{
 
 	updateScore = () =>{
 		let newName;
-		let inputName = prompt("You final Score is: "+this.gameScore+" \nPlease input your Name", "");
-		if(inputName==null||inputName=="") alert("You didn't input your Name, so yuor score won't be record");
+		let inputName = prompt("You final Score is: "+Math.round(this.gameScore*100)/100+" \nPlease input your Name", "");
+		if(inputName==null||inputName=="") {
+			alert("You didn't input your Name, so yuor score won't be record");
+			setTimeout(()=>{ clearTimeout(this.scoreTimer); 
+									this.startMenu(this.ctx);},10000);
+		}
 		else {
 
 
 			newName = inputName;
-			api.updateRanking(newName, this.gameScore.toFixed(2)).then(results=>{
+			api.updateRanking(newName, Math.round(this.gameScore*100)/100).then(results=>{
 
 				let user_id = results._id;
 				let rankings = results.rankings;
@@ -314,7 +318,7 @@ class App extends React.Component{
 
 
 				setTimeout(()=>{ clearTimeout(this.scoreTimer); 
-									this.gameInit();},10000);
+									this.startMenu(this.ctx);},10000);
 				
 			});
 

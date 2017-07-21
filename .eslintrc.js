@@ -5,7 +5,7 @@ module.exports = {
     'commonjs': true,
     'es6': true,
     'node': true,
-    'javascript': true
+    
   },
   'extends': ['eslint:recommended', 'plugin:react/recommended'],
   'parserOptions': {

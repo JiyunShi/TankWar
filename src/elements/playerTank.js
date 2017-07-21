@@ -9,7 +9,7 @@ class PlayerTank extends Tank{
 		super();
 		this.x = 150;
 		this.y = 400;
-		this.lives = 5;
+		this.lives = 2;
 		this.isPlayer = true;
 		this.isProtected = true;
 		this.protectedTime = 300;
